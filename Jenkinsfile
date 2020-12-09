@@ -1,19 +1,21 @@
-#!groovy
-  
-node ("master"){
-  
-    stage('Checkout code') {
-        echo "check out the code"
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
         }
-    stage('Build') {
-        echo "Building your package .."
-        sh """
-        cd $WORKSPACE
-        ls -lrth
-        """
-     }
-     
-    stage('Upload Artifact to Nexus') {
-        echo "Building your package .."
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
